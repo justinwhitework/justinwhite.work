@@ -3,13 +3,18 @@ import Root from "../components/layouts/BaseLayout.astro";
 import RootContent from "../components/layouts/RootContent.astro";
 import Seo from "../components/layouts/BaseSEO.astro";
 
-import Bio from "../components/layouts/controlPane/bioCard.jsx";
-import Categories from "../components/layouts/controlPane/categories.jsx";
-import Card from "../components/library/card.jsx";
-import MDViewport from "../components/layouts/viewports/document.jsx";
-import IFViewport from "../components/layouts/viewports/preview.jsx";
+const projects = [
+  { name: "Koda" },
+  { name: "Koda Vanilla", url: "https://vanilla.justinwhite.work" },
+  { name: "Sparkade", url: "https://sparkade.co" }
+];
 
-import SidePane from "../components/layouts/controlPane/pane.astro";
+const contactLinks = [
+  { label: "Personal", value: "jmwhite5807@gmail.com", type: "email" },
+  { label: "Business", value: "hmu@justinwhite.work", type: "email" },
+  { label: "LinkedIn", value: "https://www.linkedin.com/in/justinwhitework/", type: "link" },
+  { label: "GitHub", value: "https://github.com/justinwhitework", type: "link" }
+];
 ---
 
 <Seo title="Home - Justinwhite.work" />
@@ -17,22 +22,54 @@ import SidePane from "../components/layouts/controlPane/pane.astro";
 <Root title="Home - Justinwhite.work">
   <div
     class="
-    h-screen w-screen overflow-hidden p-2 flex flex-row gap-2
+    h-screen w-screen overflow-hidden p-8 flex items-center justify-center
     bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] 
-    bg-[size:24px_24px] bg-base-200
+    bg-[size:24px_24px] bg-base-200 text-sm font-mono
     "
     data-theme="prime100"
   >
+    <RootContent class="max-w-2xl w-full flex flex-col gap-10 opacity-80">
 
-    <RootContent class="md:flex hidden">
-      <MDViewport
-        sourceLocation="/docs/home.md"
-        title="Document"
-        subtitle="home.md"
-        className="flex-1 min-h-0"
-        client:only="react"
-      />
+      <section>
+        <p class="mb-3 text-primary text-2xl font-bold tracking-widest">// justinwhite.work</p>
+      </section>
+      
+      <section>
+        <p class="mb-3 text-primary font-bold tracking-widest">// ACTIVE_PROJECTS</p>
+        <ul class="list-none p-0 flex flex-col gap-2">
+          {projects.map(project => (
+            <li>
+              {project.url ? (
+                <a href={project.url} target="_blank" rel="noopener noreferrer" class="hover:text-white hover:underline transition-all">
+                  {project.name} <span class="opacity-30 text-xs ml-1">-> {project.url.replace('https://', '')}</span>
+                </a>
+              ) : (
+                <span>{project.name}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <p class="mb-3 text-primary font-bold tracking-widest">// CONTACT_GATEWAY</p>
+        <div class="flex flex-col gap-2">
+          {contactLinks.map(link => (
+            <a 
+              href={link.type === 'email' ? `mailto:${link.value}` : link.value} 
+              target={link.type === 'link' ? "_blank" : undefined}
+              class="hover:text-white hover:underline transition-all group"
+            >
+              {link.label} <span class="opacity-30 text-xs ml-1">-> {link.value.replace('https://', '')}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <div class="pt-6 border-t border-white/5 italic opacity-40 text-xs uppercase tracking-tighter">
+        Main interface offline. Systems in development.
+      </div>
+
     </RootContent>
-
   </div>
 </Root>
