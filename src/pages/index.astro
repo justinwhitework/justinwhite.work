@@ -3,18 +3,13 @@ import Root from "../components/layouts/BaseLayout.astro";
 import RootContent from "../components/layouts/RootContent.astro";
 import Seo from "../components/layouts/BaseSEO.astro";
 
-const projects = [
-  { name: "Koda" },
-  { name: "Koda Vanilla", url: "https://vanilla.justinwhite.work" },
-  { name: "Sparkade", url: "https://sparkade.co" }
-];
+import Bio from "../components/layouts/controlPane/bioCard.jsx";
+import Categories from "../components/layouts/controlPane/categories.jsx";
+import Card from "../components/library/card.jsx";
+import MDViewport from "../components/layouts/viewports/document.jsx";
+import IFViewport from "../components/layouts/viewports/preview.jsx";
 
-const contactLinks = [
-  { label: "Personal", value: "jmwhite5807@gmail.com", type: "email" },
-  { label: "Business", value: "hmu@justinwhite.work", type: "email" },
-  { label: "LinkedIn", value: "https://www.linkedin.com/in/justinwhitework/", type: "link" },
-  { label: "GitHub", value: "https://github.com/justinwhitework", type: "link" }
-];
+import SidePane from "../components/layouts/controlPane/pane.astro";
 ---
 
 <Seo title="Home - Justinwhite.work" />
@@ -22,12 +17,13 @@ const contactLinks = [
 <Root title="Home - Justinwhite.work">
   <div
     class="
-    h-screen w-screen overflow-hidden p-8 flex items-center justify-center
+    h-screen w-screen overflow-hidden p-2 flex flex-row gap-2
     bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] 
-    bg-[size:24px_24px] bg-base-200 text-sm font-mono
+    bg-[size:24px_24px] bg-base-200
     "
     data-theme="prime100"
   >
+<<<<<<< HEAD
 <<<<<<< HEAD
     <RootContent class="max-w-2xl w-full flex flex-col gap-10 opacity-80">
 
@@ -73,7 +69,18 @@ const contactLinks = [
 =======
     <SidePane />
 >>>>>>> parent of 0f7133d (deactivation)
+=======
+>>>>>>> parent of 4dd26c5 (ud2)
 
+    <RootContent class="md:flex hidden">
+      <MDViewport
+        sourceLocation="/docs/home.md"
+        title="Document"
+        subtitle="home.md"
+        className="flex-1 min-h-0"
+        client:only="react"
+      />
     </RootContent>
+
   </div>
 </Root>
